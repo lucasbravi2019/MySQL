@@ -91,3 +91,12 @@ SELECT MAX(sal_emp), MIN(sal_emp), (MAX(sal_emp) - MIN(sal_emp)) FROM empleados;
 -- 23
 SELECT nombre_depto, AVG(sal_emp) FROM empleados INNER JOIN departamentos ON empleados.id_depto = departamentos.id_depto GROUP BY nombre_depto;
 SELECT * FROM empleados INNER JOIN departamentos ON empleados.id_depto = departamentos.id_depto ORDER BY nombre_depto;
+-- 24
+SELECT nombre_depto AS "Departamento", COUNT(id_emp) AS "Cantidad de empleados" FROM empleados INNER JOIN departamentos ON empleados.id_depto = departamentos.id_depto GROUP BY nombre_depto HAVING COUNT(id_emp) > 3; 
+-- 25
+SELECT nombre, cod_jefe, COUNT(id_emp) FROM empleados GROUP BY cod_jefe HAVING COUNT(id_emp) >= 2;
+-- 26
+SELECT GROUP_CONCAT(nombre) AS "Empleados", COUNT(*) AS "Empleados por departamento", nombre_depto FROM empleados INNER JOIN departamentos ON empleados.id_depto = departamentos.id_depto GROUP BY nombre_depto; 
+-- 27
+SELECT nombre, sal_emp FROM empleados WHERE sal_emp >= (SELECT AVG(sal_emp) FROM empleados);
+
